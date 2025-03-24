@@ -6,41 +6,56 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        function button(){
-           
-             input = document.getElementById("task").value;
-             res = document.write(" "+input);
-             //input2 = document.getElementById("para");
-             input2.value = input;
-        }
-        function button1(){
-           
-           input1 = document.getElementById("para").value;
-           //input2 = document.getElementById("para");
-           input2.value = input;
-      }
-
-    </script>
     <style type="text/css">
-        #para{
-            font-size: 27px;
-            font-weight: bold;
-            
-        }
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#output {
+    margin-top: 20px;
+}
+
     </style>
 </head>
 <body style="margin-left: 40%;">
-    <h1><i class="bi bi-list-task"></i>Task Manager</h1>
-    <form action="">
-        <input type="text" id="task" placeholder="Enter a task">
-        <button  class="btn btn-success" style="background-color: lightgreen;" onclick="button()">Add Task</button>
-        <p id="para"> <button class="btn btn-danger" onclick="button1()">Delete</button></p>
-    </form>
-   
+    <i class="bi bi-list-check"></i><h1>TASK MANAGER</h1>
+    <input type="text" id="inputBox" placeholder="Enter text here">
+    <button id="okButton" class="btn btn-success">ADD TASK</button>
+    <div id="output"></div>
 
+    <script type="text/javascript">
+        document.getElementById("okButton").addEventListener("click", function () {
+    const inputText = document.getElementById("inputBox").value;
 
-   
-    
+    if (inputText.trim() !== "") {
+        const div = document.createElement("div");
+        div.textContent = ` ${inputText}`;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.style.marginLeft = "10px";
+        deleteButton.style.background = "red";
+        deleteButton.style.color = "white";
+        deleteButton.style.border = "white";
+        deleteButton.style.borderRadius = "7px";
+        deleteButton.addEventListener("click", function () {
+            div.remove();
+        });
+
+        div.appendChild(deleteButton);
+        document.getElementById("output").appendChild(div);
+
+        document.getElementById("inputBox").value = ""; 
+    }
+});
+
+    </script>
 </body>
 </html>
